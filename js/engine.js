@@ -106,6 +106,10 @@ var Engine = (function(global) {
      * they are just drawing the entire screen over and over.
      */
     function render() {
+        /* clearRect removes residual images of character when reach water
+         * and head of charcter pokes out of the top of the canvas.
+         */
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
@@ -137,8 +141,6 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
-
         renderEntities();
     }
 
@@ -154,10 +156,13 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-        /* Udaciousness requirement: Player selection!!
+        /* Udaciousness requirement: Character selection!!
          *
+         * Uses playerSelected boolean variable to toggle between character selection screen
+         * and actual gameplay. The character selection screen is structured as a pSelect object
+         * and renders when playerSelected is false. If playerSelected is true, player and score
+         * objects are rendered.
          */
-
         if (!playerSelected) {
             pSelect.render();
         } else {
@@ -188,7 +193,11 @@ var Engine = (function(global) {
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
         'images/char-princess-girl.png',
-        'images/Selector.png'
+        'images/Selector.png'//,
+        // Will hold off on adding Gems and prioritize refactoring of code.
+        //'images/Gem Blue.png',
+        //'images/Gem Green.png',
+        //'images/Gem Orange.png'
     ]);
     Resources.onReady(init);
 
