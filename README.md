@@ -9,7 +9,7 @@ As per the listed instructions, use the left and right keys to select a characte
 and enter to choose the character you wish to use.
 
 Your selected character will start off at the bottom of the screen.
-Navigate the character using your up, down, left right keys.
+Navigate the character using your up, down, left, and right keys.
 If you get hit by the ladybugs, you will lose points.
 Anytime in the game, you can press Esc to change characters.
 
