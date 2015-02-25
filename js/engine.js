@@ -162,6 +162,7 @@ var Engine = (function(global) {
             pSelect.render();
         } else {
             player.render();
+            score.render();
         }
     }
 

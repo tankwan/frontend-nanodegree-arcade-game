@@ -10,7 +10,7 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
-
+// randomnize the lane which enemy appears in
 var genY = function() {
     var min = 0;
     var max = 3;
@@ -19,6 +19,7 @@ var genY = function() {
     return yoptions[rand];
 };
 
+// randomnize the speed of enemy
 var genMove = function() {
     var min = 0;
     var max = 3;
@@ -37,6 +38,8 @@ Enemy.prototype.update = function(dt) {
     if (this.x < 500) {
         this.x += currmove;
     } else {
+        // enemy restarts and left edge of screen
+        // with new row and speed
         this.x = -100;
         this.y = genY();
         this.move = genMove();
@@ -201,6 +204,19 @@ Selector.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.currSelect.x, this.currSelect.y);
 }
 
+var Score = function() {
+    this.number = 0
+}
+
+Score.prototype.render = function() {
+    ctx.font="20px Courier New";
+    ctx.textAlign='left';
+    ctx.fillStyle= 'black';
+    ctx.fillText("Score:" + this.number.toString(), 206, 571);
+    ctx.fillStyle= 'white';
+    ctx.fillText("Score:" + this.number.toString(), 205, 570);
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -214,11 +230,13 @@ var playerSelected = false;
 var pSelect = new PlayerSelect();
 
 var player;
+var score = new Score();
 
 var checkCollisions = function() {
     for (var enemy in allEnemies) {
         if (tooClose(allEnemies[enemy], player)) {
             player.die();
+            score.number -= 1;
         }
     }
 };
