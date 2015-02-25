@@ -1,6 +1,16 @@
-frontend-nanodegree-arcade-game
+Instructions to play
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+To successfully run and play the application, please open the following link:
+https://rawgit.com/tankwan/frontend-nanodegree-arcade-game/master/index.html
 
-for self-checking their submission.
+You will first come to a character select screen!
+As per the listed instructions, use the left and right keys to select a character,
+and enter to choose the character you wish to use.
+
+Your selected character will start off at the bottom of the screen.
+Navigate the character using your up, down, left right keys.
+If you get hit by the ladybugs, you will lose points.
+Anytime in the game, you can press Esc to change characters.
+
+Enjoy!!
