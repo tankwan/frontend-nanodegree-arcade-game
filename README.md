@@ -4,6 +4,8 @@ Instructions to play
 To successfully run and play the application, please open the following link:
 https://rawgit.com/tankwan/frontend-nanodegree-arcade-game/master/index.html
 
+To run a local version, fork the code into your local drive, and open the index.html file in the folder.
+
 You will first come to a character select screen!
 As per the listed instructions, use the left and right keys to select a character,
 and enter to choose the character you wish to use.

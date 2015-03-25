@@ -51,12 +51,12 @@ Enemy.prototype.update = function(dt) {
         this.y = this.genY();
         this.move = this.genMove();
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -80,13 +80,13 @@ var Player = function(image, name, x, y) {
  * handle idle movements by the player (little hops and side sways maybe?).
  */
 Player.prototype.update = function(dt) {
-}
+};
 
 // Draw player on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     this.displayName();
-}
+};
 
 // Displays name above player's head, has black text drop shadow
 Player.prototype.displayName = function() {
@@ -112,7 +112,7 @@ Player.prototype.handleInput = function(key) {
         // Toggles to character select screen.
         playerSelected = false;
     }
-}
+};
 
 Player.prototype.die = function() {
     // If player hit by ladybug, restarts at position
@@ -120,7 +120,7 @@ Player.prototype.die = function() {
     this.y = 380;
     // Score is reduced by 1
     score.number -= 1;
-}
+};
 
 var PlayerSelect = function() {
     // Creates background pbject.
@@ -150,7 +150,7 @@ PlayerSelect.prototype.render = function() {
     this.princess.render();
     this.topLine.render();
     this.bottomLine.render();
-}
+};
 
 PlayerSelect.prototype.handleInput = function(key) {
     // Allows moving of platform left and right to select characters.
@@ -189,14 +189,14 @@ PlayerSelect.prototype.handleInput = function(key) {
         }
         playerSelected = true;
     }
-}
+};
 
 // Creates text for character select screen
 var GameText = function(text, x, y) {
     this.text = text;
     this.x = x;
     this.y = y;
-}
+};
 
 // Render function for GameText object.
 GameText.prototype.render = function() {
@@ -204,7 +204,7 @@ GameText.prototype.render = function() {
     ctx.fillStyle= 'white';
     ctx.textAlign='left';
     ctx.fillText(this.text, this.x, this.y);
-}
+};
 
 // Creates background for character select screen.
 var Background = function() {
@@ -213,29 +213,29 @@ var Background = function() {
     this.y = 220;
     this.width = 520;
     this.height = 250;
-}
+};
 
 // Render function for Background object.
 Background.prototype.render = function() {
     ctx.fillStyle = this.style;
     ctx.fillRect(this.x, this.y, this.width, this.height);
-}
+};
 
 // Creates Selector object.
 var Selector = function(currchar) {
     this.sprite = 'images/Selector.png';
     this.currSelect = currchar;
-}
+};
 
 // Render function for Selector object.
 Selector.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.currSelect.x, this.currSelect.y);
-}
+};
 
 // Create Score object.
 var Score = function() {
-    this.number = 0
-}
+    this.number = 0;
+};
 
 // Render function for Score object.
 Score.prototype.render = function() {
@@ -245,7 +245,7 @@ Score.prototype.render = function() {
     ctx.fillText("Score:" + this.number.toString(), 206, 571);
     ctx.fillStyle= 'white';
     ctx.fillText("Score:" + this.number.toString(), 205, 570);
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies.
@@ -288,9 +288,8 @@ document.addEventListener('keyup', function(e) {
         27: 'esc'
     };
 
-    /* keys are input to pSelect or player
-     * depending on whether !playerSelected is true or false.
-     */
+    // keys are input to pSelect or player
+    // depending on whether !playerSelected is true or false.
     if (!playerSelected) {
         pSelect.handleInput(allowedKeys[e.keyCode]);
     } else {
