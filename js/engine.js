@@ -82,6 +82,7 @@ var Engine = (function(global) {
         updateEntities(dt);
         if (playerSelected){
             checkCollisions();
+            checkWin();
         }
     }
 

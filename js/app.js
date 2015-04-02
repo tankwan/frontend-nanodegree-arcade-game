@@ -79,8 +79,8 @@ var Player = function(image, name, x, y) {
 /* This function does nothing but could have been a good place to
  * handle idle movements by the player (little hops and side sways maybe?).
  */
-Player.prototype.update = function(dt) {
-};
+//Player.prototype.update = function(dt) {
+//};
 
 // Draw player on the screen, required method for game
 Player.prototype.render = function() {
@@ -90,7 +90,7 @@ Player.prototype.render = function() {
 
 // Displays name above player's head, has black text drop shadow
 Player.prototype.displayName = function() {
-    ctx.font="15px Courier New";
+    ctx.font='15px Courier New';
     ctx.textAlign='left';
     ctx.strokeStyle= 'black';
     ctx.strokeText(this.name, this.x + 4, this.y+46);
@@ -115,11 +115,19 @@ Player.prototype.handleInput = function(key) {
 };
 
 Player.prototype.die = function() {
-    // If player hit by ladybug, restarts at position
+    // If player hit by ladybug, restarts at position and loses 1 point
     this.x = 200;
     this.y = 380;
     // Score is reduced by 1
     score.number -= 1;
+};
+
+Player.prototype.win = function() {
+    // If player reaches river, restarts at position and gains 1 point
+    this.x = 200;
+    this.y = 380;
+    // Score is reduced by 1
+    score.number += 1;
 };
 
 var PlayerSelect = function() {
@@ -200,7 +208,7 @@ var GameText = function(text, x, y) {
 
 // Render function for GameText object.
 GameText.prototype.render = function() {
-    ctx.font="20px Courier New";
+    ctx.font='20px Courier New';
     ctx.fillStyle= 'white';
     ctx.textAlign='left';
     ctx.fillText(this.text, this.x, this.y);
@@ -208,7 +216,7 @@ GameText.prototype.render = function() {
 
 // Creates background for character select screen.
 var Background = function() {
-    this.style = "rgba(0, 0, 0, 0.4)";
+    this.style = 'rgba(0, 0, 0, 0.4)';
     this.x = 0;
     this.y = 220;
     this.width = 520;
@@ -239,12 +247,12 @@ var Score = function() {
 
 // Render function for Score object.
 Score.prototype.render = function() {
-    ctx.font="20px Courier New";
+    ctx.font='20px Courier New';
     ctx.textAlign='left';
     ctx.fillStyle= 'black';
-    ctx.fillText("Score:" + this.number.toString(), 206, 571);
+    ctx.fillText('Score:' + this.number.toString(), 206, 571);
     ctx.fillStyle= 'white';
-    ctx.fillText("Score:" + this.number.toString(), 205, 570);
+    ctx.fillText('Score:' + this.number.toString(), 205, 570);
 };
 
 // Now instantiate your objects.
@@ -275,6 +283,16 @@ var checkCollisions = function() {
 var tooClose = function(enemy, player) {
     return Math.abs(enemy.x - player.x) < 40 && Math.abs(enemy.y - player.y) < 10;
 };
+
+var checkWin = function() {
+    if (reachRiver(player)){
+        player.win();
+    }
+};
+
+var reachRiver = function(player){
+    return player.y === 380 - 5 * player.ymove;
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
